@@ -1,0 +1,15 @@
+syntax:
+$ docker login <registry>
+$ docker tag <Image>:<tag> <registry>/<repo>/<image>:<tag>
+$ docker push <registry>/<repo>/<image>:<tag>
+Example:
+$ docker tag myspringboot:sep24 adamtravis/wezvatechspringboot:sep24
+$ docker push adamtravis/wezvatechspringboot:sep24
+$ docker tag mynodejs:sep24 adamtravis/wezvatechreactjs:sep24
+$ docker push adamtravis/wezvatechreactjs:sep24
+Dockerization Workflow
+---------------------------------
+Build App Image -> Smoke Test -> Push to Private Docker Registry
+  # Make sure Database is running before starting the application container #
+$ docker run --name testspringboot --rm --net=host -d -p 8080:8080 myspringboot:sep24
+$ docker run --name testnode --rm -d -p 3000:3000 mynodejs:sep24
