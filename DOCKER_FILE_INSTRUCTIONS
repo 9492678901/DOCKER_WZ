@@ -16,10 +16,10 @@ CMD          ["executable","arg1","arg2"]    # user cmd will override the defaul
 ENTRYPOINT   ["executable","arg1","arg2"]    # always runs default cmd, user cmd is taken as arguments, It will append with existing command(it is used for appliaction images)
 COPY         <SRC> <DEST>                    # copies file from docker host to image
 ADD          <SRC> <DEST>                    # extract a archive or download a file from a URL
-USER         <USERNAME>                      # sets the default user
+USER         <USERNAME>                      # sets the default user(when ever you mention ther user in the dockerfile after that all instructions will executes as with above mentioned user,....last user will become default user for that container)
 WORKDIR      <PATH>                          # sets the default working dir
 ENV          <VARNAME>=<VALUE>               # variable visible in the image
-ARG          <VARNAME>=<VALUE>               # variable only visible in temp container, not on image
+ARG          <VARNAME>=<VALUE>               # variable only visible in temp container(only on intermediate container), not on image(Arg is help you to set some varaileb only on intermediated container and another benifit is if you are tring to pass some value and change with in the docker during run time your going to use --build-arg imgtag:22.04)
 EXPOSE       <PORT#>
 Imagename = Reponame:Tagname # default tag is latest
 Image = <Registry>/<ImageName>:<TagName>
